@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">	
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="shortcut icon" href="Images/favicon.ico">
+    <title>{{{ PRODUCT_NAME }}}</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		
+		html, body {
+			height: 100%;
+			text-align: left;
+			background: #000000;
+		}
+		
+		canvas {
+			position: absolute;
+			background: transparent;
+		}
+		
+		canvas, .webgl-content, #unityContainer {
+			width: 100%;
+			height: 100%;
+		}		
+		#unity-loading-bar { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+		#unity-progress-bar-empty { width: 141px; height: 18px; margin-top: 10px; margin-left: 6.5px; background: url('Images/progress-bar-empty-dark.png') no-repeat center }
+		#unity-progress-bar-full { width: 0%; height: 18px; margin-top: 10px; background: url('Images/progress-bar-full-dark.png') no-repeat center }
+	</style>
+  </head>
+  <body>
+	<div id="unity-loading-bar">
+	<div id="unity-progress-bar-empty">
+	  <div id="unity-progress-bar-full"></div>
+	</div>
+	</div>
+	<canvas id="unity-canvas"></canvas>
+	<script>function GetCookie(e){return 0<document.cookie.length&&(c_start=document.cookie.indexOf(e+"="),-1!=c_start)?(c_start=c_start+e.length+1,c_end=document.cookie.indexOf(";",c_start),-1==c_end&&(c_end=document.cookie.length),unescape(document.cookie.substring(c_start,c_end))):""}function SetCookie(e,t,c){var o=c?((o=new Date).setTime(o.getTime()+24*c*60*60*1e3),"; expires="+o.toGMTString()):"";document.cookie=e+"="+t+o+"; path=/"};</script>
+	<script>
+		var progressBarFull = document.querySelector("#unity-progress-bar-full");		
+		
+		var unityInstance = null;
+		var script = document.createElement('script');
+		script.src = "Build/{{{ LOADER_FILENAME }}}";
+		document.head.append(script);	
+		script.onload = () => {
+			var yascript = document.createElement('script');
+			yascript.src = "https://yandex.ru/games/sdk/v2";
+			document.body.append(yascript);	
+			yascript.onload = () => {
+			
+			  YaGames.init().then(ysdk => {
+				  var localInstance =  createUnityInstance(document.querySelector("#unity-canvas"), {
+					dataUrl: "Build/{{{ DATA_FILENAME }}}",
+					frameworkUrl: "Build/{{{ FRAMEWORK_FILENAME }}}",
+			#if USE_WASM
+					codeUrl: "Build/{{{ CODE_FILENAME }}}",
+			#endif
+			#if MEMORY_FILENAME
+					memoryUrl: "Build/{{{ MEMORY_FILENAME }}}",
+			#endif
+			#if SYMBOLS_FILENAME
+					symbolsUrl: "Build/{{{ SYMBOLS_FILENAME }}}",
+			#endif
+					streamingAssetsUrl: "StreamingAssets",
+					companyName: {{{ JSON.stringify(COMPANY_NAME) }}},
+					productName: {{{ JSON.stringify(PRODUCT_NAME) }}},
+					productVersion: {{{ JSON.stringify(PRODUCT_VERSION) }}},
+					arguments: ["lang", ysdk.environment.browser.lang, "dev", ysdk.deviceInfo.type],
+				  }, (progress) => {
+						progressBarFull.style.width = 100 * progress + "%";
+				  }).then((localInstance) => {
+						unityInstance = localInstance;
+				  });	
+				  
+				window.ysdk = ysdk;
+				ysdk.adv.showFullscreenAdv();
+			  });
+			};		
+		};
+	</script>
+  </body>
+</html>

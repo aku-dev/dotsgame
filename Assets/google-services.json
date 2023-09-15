@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1081547069603",
+    "project_id": "dots-9b914",
+    "storage_bucket": "dots-9b914.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1081547069603:android:8067024d548467a7f7c716",
+        "android_client_info": {
+          "package_name": "com.AKStudio.Dots"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1081547069603-1r0qkj9b8qvhp1o0c6hhrua35br6tafc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjkPAOO40jnUd3_7N8VaxbOcJdAn1meV0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1081547069603-1r0qkj9b8qvhp1o0c6hhrua35br6tafc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

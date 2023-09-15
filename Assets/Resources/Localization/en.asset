@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 111b30473b86d794697797a542aec3a9, type: 3}
+  m_Name: en
+  m_EditorClassIdentifier: 
+  menu_title: DOTS
+  menu_start: PLAY
+  menu_restart: Restart
+  menu_resume: Resume
+  menu_continue: Continue
+  menu_back: BACK
+  menu_to_main: To main
+  menu_new_game_confirm: You are sure?
+  menu_new_game: Start new game
+  menu_music_toggle: Music
+  menu_effect_toggle: Effects
+  text_start_level: Start
+  text_level: Level
+  text_target: Targets
+  text_start_steps: For %count% steps.
+  text_steps: Steps
+  text_score: 'Score: %num%'
+  text_bonus_level: BONUS LEVEL
+  text_bonus_button: BONUS
+  text_win: Victory!
+  text_lose: Ran out of moves
+  text_no_solution: No steps, mixing.
+  text_congratulation_1: AMAZING!
+  text_congratulation_2: ADMIRE!
+  text_congratulation_3: GENIUS!
+  text_congratulation_4: PHENOMENAL!
+  text_congratulation_5: VERY COOL!
